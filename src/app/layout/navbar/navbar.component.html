@@ -1,0 +1,77 @@
+<header class="w-full bg-white">
+  <!-- Top bar (Help Center / Find Stores / العربية) -->
+  <div class="w-full">
+    <div class="mx-auto max-w-7xl px-4">
+      <div class="flex items-center justify-end gap-6 py-3 text-xs text-gray-600">
+        <a *ngFor="let l of topLinks"
+           [href]="l.href"
+           class="hover:text-gray-900 transition"
+           style="letter-spacing: 0.02em;">
+          {{ l.label }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main row: Search | Logo | Icons -->
+  <div class="border-t border-gray-100">
+    <div class="mx-auto max-w-7xl px-4">
+      <div class="grid grid-cols-12 items-center py-4 gap-3">
+        <!-- Search -->
+        <div class="col-span-12 md:col-span-4">
+          <div class="relative">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            <input
+              type="text"
+              placeholder="What are you looking for?"
+              class="w-full rounded-md border border-gray-200 bg-white py-3 pl-10 pr-3 text-sm
+                     outline-none focus:border-gray-300 focus:ring-0"
+              style="box-shadow: 0 0 0 0 rgba(0,0,0,0);"
+            />
+          </div>
+        </div>
+
+        <!-- Logo -->
+        <div class="col-span-12 md:col-span-4 flex justify-center">
+          <a href="#"
+             class="text-lg md:text-xl font-semibold tracking-[0.32em] text-gray-900"
+             style="font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;">
+            AMERICAN&nbsp;EAGLE
+          </a>
+        </div>
+
+        <!-- Icons (account / wishlist / bag) -->
+        <div class="col-span-12 md:col-span-4 flex justify-end">
+          <div class="flex items-center gap-5 text-gray-800">
+            <button class="hover:text-black transition" aria-label="Account">
+              <i class="fa-regular fa-user text-xl"></i>
+            </button>
+            <button class="hover:text-black transition" aria-label="Wishlist">
+              <i class="fa-regular fa-heart text-xl"></i>
+            </button>
+            <button class="hover:text-black transition" aria-label="Bag">
+              <i class="fa-solid fa-bag-shopping text-xl"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nav links row -->
+  <nav class="border-t border-gray-100">
+    <div class="mx-auto max-w-7xl px-4">
+      <ul class="flex flex-wrap justify-center gap-7 py-4 text-sm text-gray-700">
+        <li *ngFor="let item of navLinks">
+          <a [href]="item.href"
+             class="hover:text-gray-900 transition"
+             style="letter-spacing: 0.06em;">
+            {{ item.label }}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+</header>

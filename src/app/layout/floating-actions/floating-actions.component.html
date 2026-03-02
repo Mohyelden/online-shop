@@ -1,0 +1,31 @@
+<!-- Back to top -->
+<button
+  *ngIf="showTopButton"
+  (click)="scrollTop()"
+  class="fixed bottom-24 right-6 z-50 w-12 h-12 rounded-full bg-white shadow-lg
+         flex items-center justify-center hover:bg-gray-100 transition"
+  aria-label="Back to top"
+>
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<!-- Go to bottom -->
+<button
+  (click)="scrollBottom()"
+  class="fixed bottom-40 right-6 z-50 w-12 h-12 rounded-full bg-white shadow-lg
+         flex items-center justify-center hover:bg-gray-100 transition"
+  aria-label="Go to bottom"
+>
+  <i class="fa-solid fa-arrow-down"></i>
+</button>
+
+<!-- WhatsApp -->
+<a
+  href="https://wa.me/201000000000"
+  target="_blank"
+  class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-green-500 text-white
+         flex items-center justify-center shadow-xl hover:scale-110 transition"
+  aria-label="WhatsApp"
+>
+  <i class="fa-brands fa-whatsapp text-2xl"></i>
+</a>

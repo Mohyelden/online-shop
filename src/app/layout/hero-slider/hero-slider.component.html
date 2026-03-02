@@ -1,0 +1,86 @@
+<section class="w-full">
+  <div
+    class="relative mx-auto max-w-7xl overflow-hidden bg-white"
+    (mouseenter)="stop()"
+    (mouseleave)="autoPlay && start()"
+  >
+    <!-- Slides -->
+    <div class="relative h-[280px] sm:h-[420px] lg:h-[520px]">
+      <ng-container *ngFor="let s of slides; let i = index; trackBy: trackByIndex">
+        <div
+          class="absolute inset-0 transition-opacity duration-500"
+          [class.opacity-100]="i === activeIndex()"
+          [class.opacity-0]="i !== activeIndex()"
+          [class.pointer-events-none]="i !== activeIndex()"
+        >
+          <img
+            [src]="s.src"
+            [alt]="s.alt || s.name"
+            class="h-full w-full object-cover"
+          />
+
+          <!-- Overlay (Name + buttons like your screenshots) -->
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+            <div class="max-w-2xl">
+              <h2
+                class="text-4xl sm:text-6xl font-semibold tracking-wide"
+                style="letter-spacing: 0.08em; text-shadow: 0 1px 20px rgba(0,0,0,0.15);"
+              >
+                {{ s.name }}
+              </h2>
+
+              <div class="mt-6 flex gap-3 justify-center">
+                <button
+                  *ngIf="s.ctaLeft"
+                  class="px-8 py-3 rounded-full bg-white/80 hover:bg-white text-gray-900 text-sm font-medium shadow"
+                >
+                  {{ s.ctaLeft }}
+                </button>
+
+                <button
+                  *ngIf="s.ctaRight"
+                  class="px-8 py-3 rounded-full bg-white/80 hover:bg-white text-gray-900 text-sm font-medium shadow"
+                >
+                  {{ s.ctaRight }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- Prev/Next -->
+    <button
+      (click)="prev()"
+      class="absolute left-3 top-1/2 -translate-y-1/2 z-10
+             w-10 h-10 rounded-full bg-white/80 hover:bg-white shadow
+             flex items-center justify-center"
+      aria-label="Previous"
+    >
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    <button
+      (click)="next()"
+      class="absolute right-3 top-1/2 -translate-y-1/2 z-10
+             w-10 h-10 rounded-full bg-white/80 hover:bg-white shadow
+             flex items-center justify-center"
+      aria-label="Next"
+    >
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
+    <!-- Dots -->
+    <div class="absolute bottom-4 left-0 right-0 z-10 flex justify-center gap-2">
+      <button
+        *ngFor="let _ of slides; let i = index"
+        (click)="goTo(i)"
+        class="h-2.5 w-2.5 rounded-full transition"
+        [class.bg-black]="i === activeIndex()"
+        [class.bg-black/30]="i !== activeIndex()"
+        aria-label="Go to slide"
+      ></button>
+    </div>
+  </div>
+</section>
