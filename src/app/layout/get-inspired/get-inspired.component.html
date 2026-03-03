@@ -1,0 +1,57 @@
+<section class="w-full bg-white">
+  <div class="mx-auto max-w-7xl px-4 py-14">
+
+    <!-- Title -->
+    <div class="text-center">
+      <h2 class="text-xl font-semibold text-gray-900">{{ title }}</h2>
+      <p class="mt-2 text-sm text-gray-600 max-w-3xl mx-auto">
+        {{ subtitle }}
+      </p>
+    </div>
+
+    <!-- Cards + right arrow -->
+    <div class="mt-10 relative">
+      <div
+        #scroller
+        class="flex gap-6 overflow-x-auto scroll-smooth pb-3"
+        style="scrollbar-width:none;"
+      >
+        <style>
+          :host ::-webkit-scrollbar { display: none; }
+        </style>
+
+        <a
+          *ngFor="let c of cards"
+          [href]="c.href || '#'"
+          class="flex-none w-[280px] sm:w-[320px] md:w-[300px] lg:w-[300px]"
+        >
+          <div class="relative h-[440px] rounded-xl overflow-hidden bg-gray-100">
+            <img [src]="c.src" [alt]="c.alt || 'Inspired'" class="w-full h-full object-cover" />
+
+            <!-- play icon -->
+            <div
+              *ngIf="c.isVideo"
+              class="absolute inset-0 flex items-center justify-center"
+            >
+              <div class="w-12 h-12 rounded-full bg-black/40 flex items-center justify-center">
+                <i class="fa-solid fa-play text-white"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Right arrow button -->
+      <button
+        (click)="scrollRight(scroller)"
+        class="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2
+               w-12 h-12 rounded-full bg-white shadow-lg
+               items-center justify-center hover:bg-gray-50"
+        aria-label="Next"
+      >
+        <i class="fa-solid fa-chevron-right text-gray-800 text-xl"></i>
+      </button>
+    </div>
+
+  </div>
+</section>

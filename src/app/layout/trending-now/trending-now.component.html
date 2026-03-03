@@ -1,0 +1,84 @@
+<section class="w-full bg-white">
+  <div class="mx-auto max-w-7xl px-4 py-10">
+
+    <!-- Header row -->
+    <div class="flex items-center justify-between">
+      <h2 class="text-xl font-semibold text-gray-900">Trending Now</h2>
+
+      <div class="flex items-center gap-2">
+        <!-- arrows style like screenshot -->
+        <button
+          class="w-10 h-10 rounded-full border border-gray-200 bg-white
+                 flex items-center justify-center hover:bg-gray-50"
+          (click)="scrollLeft(scroller)"
+          aria-label="Previous"
+        >
+          <i class="fa-solid fa-chevron-left text-gray-700"></i>
+        </button>
+
+        <button
+          class="w-10 h-10 rounded-full border border-gray-200 bg-white
+                 flex items-center justify-center hover:bg-gray-50"
+          (click)="scrollRight(scroller)"
+          aria-label="Next"
+        >
+          <i class="fa-solid fa-chevron-right text-gray-700"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="mt-5 flex flex-wrap gap-3">
+      <button
+        *ngFor="let t of tabs"
+        (click)="setTab(t.id)"
+        class="px-5 py-2 rounded-full text-sm border transition"
+        [class.bg-black]="t.id === activeTabId"
+        [class.text-white]="t.id === activeTabId"
+        [class.border-black]="t.id === activeTabId"
+        [class.bg-white]="t.id !== activeTabId"
+        [class.text-gray-900]="t.id !== activeTabId"
+        [class.border-gray-300]="t.id !== activeTabId"
+      >
+        {{ t.label }}
+      </button>
+    </div>
+
+    <!-- Slider -->
+    <div
+      #scroller
+      class="mt-8 flex gap-6 overflow-x-auto scroll-smooth pb-3"
+      style="scrollbar-width: none;"
+    >
+      <!-- hide scrollbar (webkit) -->
+      <style>
+        :host ::-webkit-scrollbar { display: none; }
+      </style>
+
+      <a
+        *ngFor="let p of items"
+        href="#"
+        class="flex-none w-[260px]"
+      >
+        <!-- image -->
+        <div class="w-full h-[330px] bg-gray-100 overflow-hidden">
+          <img [src]="p.image" [alt]="p.title" class="w-full h-full object-cover" />
+        </div>
+
+        <!-- small color dots row (fake placeholders like screenshot) -->
+        <div class="mt-3 flex items-center gap-2">
+          <span class="w-4 h-4 rounded-full border border-gray-300 bg-white"></span>
+          <span class="w-4 h-4 rounded-full bg-gray-700"></span>
+          <span class="w-4 h-4 rounded-full bg-gray-300"></span>
+        </div>
+
+        <!-- title + price -->
+        <div class="mt-3 text-sm text-gray-900">
+          <div class="leading-snug">{{ p.title }}</div>
+          <div class="mt-1 font-semibold">{{ egp(p.price) }}</div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
