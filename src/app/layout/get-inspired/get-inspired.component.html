@@ -41,6 +41,17 @@
         </a>
       </div>
 
+      <!-- Left arrow button -->
+      <button
+        (click)="scrollLeft(scroller)"
+        class="hidden md:flex absolute -left-3 top-1/2 -translate-y-1/2
+               w-12 h-12 rounded-full bg-white shadow-lg
+               items-center justify-center hover:bg-gray-50"
+        aria-label="Previous"
+      >
+        <i class="fa-solid fa-chevron-left text-gray-800 text-xl"></i>
+      </button>
+
       <!-- Right arrow button -->
       <button
         (click)="scrollRight(scroller)"

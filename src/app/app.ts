@@ -63,6 +63,8 @@ inspiredCards = [
   { src: '/images/fifthwomenstop.avif' },
   { src: '/images/fouthwomenstop.avif' },
   { src: '/images/secondwomenstop.avif' },
+  { src: '/images/secondwomenstop.avif' },
+  { src: '/images/secondwomenstop.avif' },
   { src: '/images/firstwomenstop.avif', isVideo: true },
 ];
 }

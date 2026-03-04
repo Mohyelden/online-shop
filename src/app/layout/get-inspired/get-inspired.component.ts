@@ -21,6 +21,10 @@ export class GetInspiredComponent {
 
   @Input({ required: true }) cards: InspiredCard[] = [];
 
+  scrollLeft(scroller: HTMLElement) {
+    scroller.scrollBy({ left: -900, behavior: 'smooth' });
+  }
+
   scrollRight(scroller: HTMLElement) {
     scroller.scrollBy({ left: 900, behavior: 'smooth' });
   }
