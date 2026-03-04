@@ -1,0 +1,19 @@
+<app-hero-slider
+  [slides]="heroSlides"
+  [autoPlay]="true"
+  [intervalMs]="5000">
+</app-hero-slider>
+
+<app-category-bubbles [items]="categoryItems"></app-category-bubbles>
+
+<app-promo-banner
+  [bgImage]="jeansBanner.bgImage"
+  [title]="jeansBanner.title"
+  [subtitle]="jeansBanner.subtitle"
+  [description]="jeansBanner.description"
+  [leftBtn]="jeansBanner.leftBtn"
+  [rightBtn]="jeansBanner.rightBtn">
+</app-promo-banner>
+
+<app-trending-now></app-trending-now>
+<app-get-inspired [cards]="inspiredCards"></app-get-inspired>
