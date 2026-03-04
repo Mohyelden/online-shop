@@ -1,0 +1,105 @@
+<section class="w-full bg-white">
+  <div class="mx-auto max-w-7xl px-6 py-10">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between">
+      <h1 class="text-xl font-semibold text-gray-900">
+        Shopping Bag ({{ items.length }} item{{ items.length === 1 ? '' : 's' }})
+      </h1>
+    </div>
+    <div class="mt-4 border-b border-gray-200"></div>
+
+    <!-- Empty state (optional, if cart is empty) -->
+    <div *ngIf="items.length === 0" class="py-20 text-center">
+      <h2 class="text-2xl font-semibold text-gray-900">Your bag is empty</h2>
+      <p class="mt-2 text-sm text-gray-600">Start shopping to add items to your bag.</p>
+      <a
+        routerLink="/"
+        class="mt-8 inline-flex px-10 py-3 rounded-full bg-black text-white font-semibold hover:bg-gray-900 transition"
+      >
+        Go Shopping
+      </a>
+    </div>
+
+    <!-- Items -->
+    <div *ngIf="items.length > 0" class="py-8 space-y-6">
+
+      <div
+        *ngFor="let item of items"
+        class="border border-gray-200 bg-gray-50/40"
+      >
+        <div class="bg-white m-6 p-6">
+          <div class="flex flex-col md:flex-row gap-6">
+
+            <!-- Image -->
+            <div class="w-full md:w-[175px] h-[260px] bg-gray-100 overflow-hidden flex-none">
+              <img [src]="item.image" [alt]="item.title" class="block w-full h-full object-cover" />
+            </div>
+
+            <!-- Details -->
+            <div class="flex-1">
+              <div class="text-sm text-gray-900 font-medium">
+                {{ item.title }}
+              </div>
+
+              <div class="mt-2 flex items-center gap-2 text-sm">
+                <span class="text-red-600 font-semibold">{{ egp(item.price) }}</span>
+                <span *ngIf="item.oldPrice" class="text-gray-500 line-through">
+                  {{ egp(item.oldPrice) }}
+                </span>
+              </div>
+
+              <div
+                *ngIf="item.discountBadge"
+                class="mt-2 inline-block text-xs bg-gray-200 px-2 py-1"
+              >
+                {{ item.discountBadge }}
+              </div>
+
+              <div class="mt-4 text-sm text-gray-600 space-y-1">
+                <div>Color : <span class="text-gray-900">{{ item.color }}</span></div>
+                <div>Size : <span class="text-gray-900">{{ item.size }}</span></div>
+                <div class="text-gray-400">Item Code : <span class="text-gray-600">{{ item.itemCode }}</span></div>
+              </div>
+            </div>
+
+            <!-- Qty -->
+            <div class="flex-none md:w-[170px] flex md:justify-end">
+              <div class="w-full md:w-auto">
+                <label class="sr-only">Qty</label>
+                <select
+                  class="w-full md:w-[150px] border border-gray-400 rounded px-3 py-2 text-sm bg-white"
+                  [value]="item.qty"
+                  (change)="setQty(item.id, +($any($event.target).value))"
+                >
+                  <option *ngFor="let q of qtyOptions" [value]="q">Qty: {{ q }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom actions row -->
+          <div class="mt-6 flex items-center justify-between text-sm text-gray-700">
+            <button
+              (click)="moveToFavorites(item.id)"
+              class="flex items-center gap-2 hover:underline"
+            >
+              <i class="fa-regular fa-heart"></i>
+              Move To Favorites
+            </button>
+
+            <button
+              (click)="remove(item.id)"
+              class="flex items-center gap-2 hover:underline"
+            >
+              Remove
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
